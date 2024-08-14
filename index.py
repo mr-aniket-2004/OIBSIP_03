@@ -25,7 +25,7 @@ def getdata():
     api= "https://api.openweathermap.org/data/2.5/weather?q"+city+"&appid=87cb6297185815c884dd5e26e5a531a0"
     
     json_data = requests.get(api).json()
-    condition =json_data["weather"][0]['main']
+    condition =json_data["weather"][0]["main"]
     description = json_data['weather'][0]['description']
     temp =int(json_data['main']['temp']-273.15)
     pressure = json_data['main']['pressure']
