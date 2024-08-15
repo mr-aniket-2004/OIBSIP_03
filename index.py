@@ -21,16 +21,17 @@ def getdata():
     currenttime =localtime.strftime("%I:%M %p")
     clock.config(text=currenttime)
     mytime.config(text="CURRENT WEATHER")
-
-    api= "https://api.openweathermap.org/data/2.5/weather?q"+city+"&appid=87cb6297185815c884dd5e26e5a531a0"
+    key = "87cb6297185815c884dd5e26e5a531a0"
+    api= f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={key}"
     
-    json_data = requests.get(api).json()
-    condition =json_data["weather"][0]["main"]
-    description = json_data['weather'][0]['description']
-    temp =int(json_data['main']['temp']-273.15)
-    pressure = json_data['main']['pressure']
-    humidity = json_data['main']['humidity']
-    wind = json_data['wind']['speed']
+    data = requests.get(api).json()
+    print(data)
+    condition =data["weather"][0]["main"]
+    description = data['weather'][0]['description']
+    temp =int(data['main']['temp']-273.15)
+    pressure = data['main']['pressure']
+    humidity = data['main']['humidity']
+    wind = data['wind']['speed']
 
     t.config(text=(temp,"°"))
     c.config(text=(condition,"|","FEELS","LIKE",temp,"°"))
@@ -107,7 +108,7 @@ h= Label(text="...",font=("arial",20,"bold"),bg="#1ab5ef")
 h.place(x=280,y=430)
 
 d= Label(text="...",font=("arial",20,"bold"),bg="#1ab5ef")
-d.place(x=450,y=430)
+d.place(x=420,y=430)
 
 p= Label(text="...",font=("arial",20,"bold"),bg="#1ab5ef")
 p.place(x=670,y=430)
